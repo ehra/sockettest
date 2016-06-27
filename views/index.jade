@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  div(id="num")
+   h1 #{rooms}
+   p(id="datalo")
+   button(id="send" type="submit") Book room  
+
+  script(src="/socket.io/socket.io.js")
+  script.
+   var socket = io.connect('//localhost:3000');
+   socket.on('private message',function(from,msg){
+    console.log(msg);
+    $("p").text(msg);
+   });
+   
